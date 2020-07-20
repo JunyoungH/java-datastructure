@@ -1,4 +1,4 @@
-package chap03;
+package search;
 
 public class GenericClass {
     static class GenericClazz<T> {

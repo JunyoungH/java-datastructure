@@ -1,8 +1,5 @@
-package chap02;
+package basicDataStructure;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
-
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 

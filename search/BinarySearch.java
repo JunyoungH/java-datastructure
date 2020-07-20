@@ -1,4 +1,4 @@
-package chap03;
+package search;
 
 import java.util.Random;
 import java.util.Scanner;

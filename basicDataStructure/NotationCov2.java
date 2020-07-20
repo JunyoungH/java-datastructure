@@ -1,4 +1,4 @@
-package chap02;
+package basicDataStructure;
 
 import java.util.Scanner;
 

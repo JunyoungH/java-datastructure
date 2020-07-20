@@ -1,4 +1,4 @@
-package chap02;
+package basicDataStructure;
 
 public class YMD {
     private int year;
