@@ -36,6 +36,7 @@ public class IntArrayQueue {
         dump();
     }
 
+    //배열의 0번째 요소를 디큐한 후 배열 다시 재배치
     public int dequeue() {
         if(num <= 0) {
             throw new IntArrayQueue.EmptyIntQueueException();

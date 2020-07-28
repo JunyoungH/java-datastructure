@@ -33,7 +33,7 @@ public class LinearSentinel {
                 break;
             }
         }
-        return index == nums.length - 1 ? -1 : index;
+        return index == nums.length - 1 ? -1 : index; // 배열의 마지막 인덱스 (보초)랑 같으면 검색 실패
     }
 
     public static void main(String[] args) {

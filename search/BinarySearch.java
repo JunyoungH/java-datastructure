@@ -3,6 +3,11 @@ package search;
 import java.util.Random;
 import java.util.Scanner;
 
+/*
+* 배열의 중간 인덱서의 값을 찾고 찾는 값과 크기 비교
+* 찾는 값이 더 작으면 배열 중간의 앞 부분의 중간 인덱스의 값을 찾아서 비교
+* 더 이상 배열이 나눠지지 않을 때까지 반복
+* */
 public class BinarySearch {
 
     static int search(int nums[], int target) {

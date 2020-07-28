@@ -25,6 +25,7 @@ public class IntBufferRingQueue {
         public  OverflowBufferRingQueueException() {}
     }
 
+    //배열이 다 차면 인덱스 0부터 다시 채워 나감
     public void enqueue(int value) {
         if(num >= max) {
             throw new IntBufferRingQueue.OverflowBufferRingQueueException();
@@ -36,6 +37,7 @@ public class IntBufferRingQueue {
         dump();
     }
 
+    //배열의 앞에서부터 순차적으로 디큐하고 배열의 끝까지 도달하면 다시 0부터 디큐
     public int dequeue() {
         if(num <= 0) {
             throw new IntBufferRingQueue.EmptyBufferRingQueueException();

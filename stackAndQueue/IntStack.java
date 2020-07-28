@@ -32,7 +32,6 @@ public class IntStack {
             throw new OverflowIntStackException();
         }
         stack[pointer++] = num;
-        dump();
     }
 
     public int pop() {
