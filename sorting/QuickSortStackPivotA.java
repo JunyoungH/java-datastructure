@@ -6,19 +6,22 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class QuickSortStackPivotA {
-    //시작, 중간, 끝 위치의 값 비교하여 정렬
-    static int pivot(int[] arr, int front, int center, int rear) {
-        if(arr[front] > arr[center]) {
-            swap(arr, front, center);
+    static int pivot(int a, int b, int c) {
+        if(a >= b){
+            if(b >= c) {
+                return b;
+            } else if (c >= a) {
+                return a;
+            } else {
+                return c;
+            }
+        } else if(b < c) {
+            return b;
+        } else if(c < a) {
+            return a;
+        } else {
+            return c;
         }
-        if(arr[center] > arr[rear]) {
-            swap(arr, center, rear);
-        }
-        if(arr[front] > arr[center]) {
-            swap(arr, front, center);
-        }
-
-        return arr[center];
     }
 
     static void print(int[] arr) {
@@ -49,42 +52,83 @@ public class QuickSortStackPivotA {
     }
 
     static void quickSort(int[] arr, int left, int right) {
+        System.out.println("퀵 정렬 수행");
 
-        if((right - left) < 9) {
-            insertionSort(arr);
-        } else {
-            System.out.println("퀵 정렬 수행");
+        IntStack leftStack = new IntStack(arr.length);
+        IntStack rightStack = new IntStack(arr.length);
 
-            int front = left;
-            int rear = right;
-            int center = (left + rear) / 2;
-            int pivot = pivot(arr, left, center, arr[right]);
-            swap(arr, center, rear - 1);
-            front++;
-            rear--;
+        leftStack.push(left);
+        rightStack.push(right);
+        System.out.print("left ");
+        leftStack.dump();
 
-            // 피벗 나누기
-            while(front <= rear) {
-                while (arr[front] < pivot) front++;
-                while (arr[rear] > pivot) rear--;
+        System.out.print("right ");
+        rightStack.dump();
 
-                if (front <= rear) {
-                    swap(arr, front++, rear--);
+        System.out.println();
+
+        while(!leftStack.isEmpty()) {
+            int front = left = leftStack.pop();
+            int rear = right = rightStack.pop();
+            System.out.println("팝 " + left + " : " + right);
+
+            if((right - left) < 9) {
+                insertionSort(arr);
+            } else {
+                int center = (left + right) / 2;
+                int pivot = pivot(arr[left], arr[(front + rear) / 2], arr[right]);
+                swap(arr, center, right - 1); // 중간 값과 끝에서 -1 번째 값 교환
+                front++;
+                rear--;
+
+                while(front <= rear) {
+                    while(arr[front] < pivot) front++;
+                    while(pivot < arr[rear]) rear--;
+
+                    if(front <= rear) {
+                        swap(arr, front++, rear--);
+                    }
+                }
+
+                if((rear - left) < (right - front)) {
+                    int temp = left;
+                    left = front;
+                    front = temp;
+
+                    temp = rear;
+                    rear = right;
+                    right = temp;
+                }
+
+                if(left < rear) {
+                    leftStack.push(left);
+                    rightStack.push(rear);
+
+                    System.out.println("==분할");
+                    System.out.print("왼쪽 그룹 left push ");
+                    leftStack.dump();
+
+                    System.out.print("왼쪽 그룹 right push ");
+                    rightStack.dump();
+
+                    System.out.println();;
+
+                }
+
+                if(front < right) {
+                    leftStack.push(front);
+                    rightStack.push(right);
+
+                    System.out.println("==분할==");
+                    System.out.print("오른쪽 그룹 left push ");
+                    leftStack.dump();
+
+                    System.out.print("오른쪽 그룹 right push ");
+                    rightStack.dump();
+
+                    System.out.println();
                 }
             }
-
-            if((rear - left) < (right - front)) {
-                int temp = left;
-                left = front;
-                front = temp;
-
-                temp = rear;
-                rear = right;
-                right = temp;
-            }
-
-            if(left < rear) quickSort(arr, left, rear);
-            if(front < right) quickSort(arr, front, right);
         }
     }
 

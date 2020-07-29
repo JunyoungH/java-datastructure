@@ -5,22 +5,19 @@ import java.util.Scanner;
 
 public class QuickSortPivotB {
 
-    static int pivot(int a, int b, int c) {
-        if(a >= b){
-            if(b >= c) {
-                return b;
-            } else if (c >= a) {
-                return a;
-            } else {
-                return c;
-            }
-        } else if(b < c) {
-            return b;
-        } else if(c < a) {
-            return a;
-        } else {
-            return c;
+    //시작, 중간, 끝 위치의 값 비교하여 정렬
+    static int pivot(int[] arr, int front, int center, int rear) {
+        if(arr[front] > arr[center]) {
+            swap(arr, front, center);
         }
+        if(arr[center] > arr[rear]) {
+            swap(arr, center, rear);
+        }
+        if(arr[front] > arr[center]) {
+            swap(arr, front, center);
+        }
+
+        return arr[center];
     }
 
     static void print(int[] arr) {
@@ -58,7 +55,7 @@ public class QuickSortPivotB {
 
             int front = left;
             int rear = right;
-            int pivot = pivot(arr[left], arr[(front + rear) / 2], arr[right]);
+            int pivot = pivot(arr, left, (left + right) / 2, right);
 
             // 피벗 나누기
             while(front <= rear) {
