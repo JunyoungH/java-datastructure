@@ -13,12 +13,12 @@ public class Med3 {
             } else {
                 med = a;
             }
+        } else if(b < c) {
+            med = b;
         } else if(a > c) {
             med = a;
-        } else if(b > c) {
-            med = c;
         } else {
-            med = b;
+            med = c;
         }
 
         String out = String.format("%d, %d, %d 의 중앙 값은 %d 입니다", a, b, c, med);
